@@ -1,2 +1,2 @@
-# Expenses-Reccorder-Web
+# Expenses-Recorder-Web
 A web application to keep track of personal expenses or a groups expenses.
