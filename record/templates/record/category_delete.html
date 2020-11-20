@@ -1,0 +1,26 @@
+{% extends "record/base.html" %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'record/manage_category.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<br><br><br>
+{% for i in category %}
+
+<div class="container">
+   <li>
+      {{i}}
+   </li>
+   <form action="{% url 'home:category-delete' i.id %}" method="post">
+      {% csrf_token %}
+      <input type="submit" value="Delete Category" class="btn1 btn-primary">
+   </form><br><br>
+</div>
+
+{% endfor %}
+
+{% endblock %}

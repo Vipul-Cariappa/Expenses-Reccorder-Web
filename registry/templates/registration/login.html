@@ -1,0 +1,29 @@
+{% extends "record/base.html" %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'record/login.css' %}">
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<div class="container">
+    <div class="container">
+        <div class="container">
+            <div class="box">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <br>
+                    <p>Don't have an account? <a href="{% url 'user:signup' %}">Create</a></p>
+                    <p>Forgot Password? <a href="{% url 'password_reset' %}">Reset</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

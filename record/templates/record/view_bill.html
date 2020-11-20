@@ -1,0 +1,196 @@
+{% extends "record/base.html" %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'record/add_bill.css' %}">
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
+
+{% block content %}
+
+<br><br>
+
+<div class="container">
+   <div class="blur">
+      <select class="mdb-select md-form" id="month" name="month">
+         <option value="1">Jan</option>
+         <option value="2">Feb</option>
+         <option value="3">Mar</option>
+         <option value="4">Api</option>
+         <option value="5">May</option>
+         <option value="6">Jun</option>
+         <option value="7">Jul</option>
+         <option value="8">Aug</option>
+         <option value="9">Sep</option>
+         <option value="10">Oct</option>
+         <option value="11">Nov</option>
+         <option value="12">Dec</option>
+      </select>
+
+      <select class="mdb-select md-form" id="category" name="category">
+         <option value="0">-- All --</option>
+
+         {% for i in category %}
+         <option value="{{ i.id }}">{{ i }}</option>
+         {% endfor %}
+
+      </select>
+
+      <select class="mdb-select md-form" id="year" name="year">
+         {% for i in year %}
+         <option value="{{ i }}">{{ i }}</option>
+         {% endfor %}
+      </select>
+      <button type="submit" class="btn btn-outline-primary btn-sm" id="sort">Sort</button>
+
+   </div>
+
+   <br>
+   <div class="container">
+      <h4>{{ group }}</h4>
+   </div>
+   <br>
+
+   <div class="container">
+
+      <div class="row" id="writehere">
+
+      </div>
+      <div class="row">
+         <div class="col"></div>
+         <div class="col"></div>
+         <div class="col"><b>Total: </b></div>
+         <div class="col"><b id="sum"></b></div>
+      </div>
+
+
+   </div>
+
+   <br><br>
+   <div class="container">
+      <a class="btn btn-outline-primary btn-sm" href="{% url 'home:bill-add' group_id %}" class="href">Add New Bill</a>
+   </div>
+</div>
+
+<div class="photo"></div>
+
+<script type="text/javascript">
+
+   var base_url = 'http://127.0.0.1:8000/api/bills/{{ group.id }}/'
+   var today = new Date();
+   var date = today.getDate()
+   var year = today.getFullYear()
+   var month = today.getMonth() + 1
+
+   var sort_btn = document.getElementById('sort')
+   var year_sel = document.getElementById('year')
+   var month_sel = document.getElementById('month')
+   var category_sel = document.getElementById('category')
+
+   var wrapper = document.getElementById('writehere')
+   var sum_w = document.getElementById('sum')
+
+   function buildList() {
+
+      var main_url = base_url + "year=" + year + "&month=" + month + "/"
+      year_sel.value = year
+      month_sel.value = month
+
+      fetch(main_url)
+         .then(response => response.json())
+         .then(function (data) {
+
+            // console.log(data)
+
+            var list = data
+            var amount = 0
+
+            wrapper.innerHTML = '<div class="col">' +
+               '<b>Name:</b>' +
+               '</div>' +
+               '<div class="col">' +
+               '<b>Category:</b>' +
+               '</div>' +
+               '<div class="col">' +
+               '<b>Date:</b>' +
+               '</div>' +
+               '<div class="col">' +
+               '<b>Amount</b>' +
+               '</div>' +
+               '<div class="w-100"></div>'
+
+            for (var i in list) {
+
+               wrapper.innerHTML += "<div class='col'>" + "<a href=/bill/" + list[i].id + "/" + ">" + list[i].name + "</a>" + "</div>"
+               wrapper.innerHTML += "<div class='col'>" + list[i].category + "</div>"
+               wrapper.innerHTML += "<div class='col'>" + list[i].date + "</div>"
+               wrapper.innerHTML += "<div class='col'>" + list[i].amount + "</div>"
+               wrapper.innerHTML += "<div class='w-100'></div>"
+               amount += parseFloat(list[i].amount)
+
+            }
+            sum_w.innerHTML = "<b>" + amount + "</b>"
+
+         })
+
+   }
+
+   sort_btn.addEventListener("click", function () {
+
+      var category_v = parseInt(category_sel.value)
+      var year_v = parseInt(year_sel.value)
+      var month_v = parseInt(month_sel.value)
+
+      if (category_v) {
+         var main_url = base_url + "year=" + year_v + "&month=" + month_v + "&category=" + category_v + "/"
+      } else {
+         var main_url = base_url + "year=" + year_v + "&month=" + month_v
+      }
+
+      fetch(main_url)
+         .then(response => response.json())
+         .then(function (data) {
+
+            // console.log(data)
+
+            var list = data
+            var amount = 0
+
+            wrapper.innerHTML = '<div class="col">' +
+               '<b>Name:</b>' +
+               '</div>' +
+               '<div class="col">' +
+               '<b>Category:</b>' +
+               '</div>' +
+               '<div class="col">' +
+               '<b>Date:</b>' +
+               '</div>' +
+               '<div class="col">' +
+               '<b>Amount</b>' +
+               '</div>' +
+               '<div class="w-100"></div>'
+
+            for (var i in list) {
+
+               wrapper.innerHTML += "<div class='col'>" + "<a href=/bill/" + list[i].id + "/" + ">" + list[i].name + "</a>" + "</div>"
+               wrapper.innerHTML += "<div class='col'>" + list[i].category.name + "</div>"
+               wrapper.innerHTML += "<div class='col'>" + list[i].date + "</div>"
+               wrapper.innerHTML += "<div class='col'>" + list[i].amount + "</div>"
+               wrapper.innerHTML += "<div class='w-100'></div>"
+               amount += parseFloat(list[i].amount)
+
+            }
+            sum_w.innerHTML = "<b>" + amount + "</b>"
+
+         })
+   })
+
+
+   buildList()
+
+</script>
+
+{% endblock %}

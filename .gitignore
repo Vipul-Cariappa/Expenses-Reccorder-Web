@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Data Base SQLite3
+*.db
+
+# Django and Project
+*/migrations/
+static/
+etc/
+
+# vscode
+.vscode/

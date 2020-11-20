@@ -1,0 +1,118 @@
+{% extends "record/base.html" %}
+
+{% load static %}
+
+{% block css %}
+<style>
+	body {
+		font-size: 1.1em;
+		text-align: justify;
+		font-family: "Fira Sans", sans-serif;
+		background: url(https://cdn.pixabay.com/photo/2016/04/12/22/35/watercolour-1325656_960_720.jpg) no-repeat;
+		background-size: cover;
+	}
+
+	.para1 {
+		height: 100%;
+		width: 100%;
+		background-color: rgba(110, 235, 240, 0.822);
+		padding: 10px 20px 5px 20px;
+		margin-top: 30px;
+	}
+
+	.mail {
+		height: 100%;
+		width: 100%;
+		background-color: rgba(79, 224, 230, 0.884);
+		padding: 0px 20px 5px 20px;
+		margin-top: 30px;
+	}
+
+	.para2 {
+		height: 100%;
+		width: 100%;
+		background-color: rgba(63, 191, 196, 0.884);
+		padding: 10px 20px 5px 20px;
+		margin-bottom: 30px;
+		margin-top: 30px;
+	}
+
+	.contain {
+		max-width: 100%;
+	}
+
+	.parallax1 {
+		background: url('https://cdn.pixabay.com/photo/2019/10/11/16/48/receipts-4542292_960_720.jpg') no-repeat center;
+		background-size: cover;
+		background-attachment: fixed;
+		height: 400px;
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+	{{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+
+<div class="container">
+	<div class="contain">
+		<div class="container">
+			<br>
+			<div class="parallax1">
+			</div>
+
+			<div class="para1">
+				<p>
+					This is a web-application developed by Vipul Cariappa N T and Sharmada Iyer.
+					<br>
+					<br> This web site will help you manage your daily expenses. Login or Register In upper right
+					corner to use the facilities provided by this web site.
+					<br>
+					<br> A registered user can form groups and share its name and password with others to join the
+					group. Members in a group can add, edit and delete bill's created. Creator of a group has the
+					ablity to remove a existing member from the
+					group or/and delete the group.
+					<br>
+					<br> This site has some security measures implemented, but does not granty security of your data.
+					<br>
+					<br> This site should only be used for personal use. Using this web-application for
+					commercial purposes is not recommended by the developer.
+					<br>
+			</div>
+			<div class="mail">
+				<br> For any suggestions and questions please email to <br> <b>Vipul Cariappa:
+					vipulcariappa@gmail.com</b>
+			</div>
+			</p>
+
+			<div class="para2">
+				<p>
+					<b>How to use this web-application?</b>
+					<br>
+					First, register as a new user.
+					You can do this by clicking the register button in the upper right corner.
+					Next, go to My-Groups from navbar and add-group from the drop down to create a new group.
+					Enter the desired name and password for your group.
+					You can ask others like your family members or your organisation members to join
+					the same group by entering the group name and password in join-group page.
+					You can access your newly created group from the same drop down.
+					You can access all your entries here.
+					You may find none in beginning.
+					You can click the add bill button to create a new entry.
+					In the create new bill page you need to add a new category before you can enter a new bill.
+					<br>
+					Now you can start you work.
+				</p>
+			</div>
+
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "record/base.html" %}
+
+{% block navbar %}
+<a class="nav-item nav-link" href="{%  url 'user:group-add'  %}">Add-Group</a>
+<a class="nav-item nav-link" href="{%  url 'user:group-join'  %}">Join-Group</a>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+   <br>
+   <p>
+      There is an error <br>
+      You do not belong to any group <br>
+      First join or create a gorup!! <br>
+   </p>
+</div>
+{% endblock %}

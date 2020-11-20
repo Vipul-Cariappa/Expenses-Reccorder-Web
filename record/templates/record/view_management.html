@@ -1,0 +1,72 @@
+{% extends "record/base.html" %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'record/add_bill.css' %}">
+{% endblock %}
+
+{% block navbar %}
+<a class="nav-item nav-link" href="{%  url 'home:group-add'  %}">Add-Group</a>
+<a class="nav-item nav-link" href="{%  url 'home:group-join'  %}">Join-Group</a>
+{% endblock %}
+
+{% block content %}
+
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-danger" role="alert">
+   {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+<div class="container">
+
+   <br><br>
+   <ul>
+      {% for i in group_list %}
+      <li>
+         Name: <b>{{i}}</b><br> Password: <b> {{i.password}}</b>
+         <br><br>
+
+         <b>User: </b><br>
+
+         {% for j in users %}
+         {% if j in i.users.all %}
+         {{ j }} <br>
+
+         {% if i.admin == active_user %}
+         {% if active_user != j %}
+
+         <form action="{% url 'home:group-deleteuser' i.id j.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Remove User" class="btn btn-primary">
+         </form>
+
+         {% endif %}
+         {% endif %}
+
+         {% endif %}
+         {% endfor %}
+         <br>
+
+         {% if i.admin == active_user %}
+         <form action="{% url 'home:group-delete' i.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete Group" class="btn btn-primary">
+         </form>
+         {% else %}
+         <form action="{% url 'home:group-leave' i.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Leave Group" class="btn btn-primary">
+         </form>
+         {% endif %}
+
+      </li>
+      <br><br>
+      {% endfor %}
+   </ul>
+</div>
+{% endblock %}

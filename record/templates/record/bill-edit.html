@@ -1,0 +1,32 @@
+{% extends "record/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'record/add_bill.css' %}">
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-primary" role="alert">
+  {{message}}
+</div>
+{% endfor %}
+{% endif %}
+
+
+
+<div class="container">
+  <br><br>
+  <form method="post">
+    <div class="container">{% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-outline-primary">Update</button></div>
+  </form>
+  <br><br>
+</div>
+{% endblock %}

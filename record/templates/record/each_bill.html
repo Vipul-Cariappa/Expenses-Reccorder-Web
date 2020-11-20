@@ -1,0 +1,31 @@
+{% extends "record/base.html" %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'record/manage_category.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="photo"></div>
+<div class="container">
+   <div class="block2">
+      <p>
+         <b>{{ bill.name }}</b> <br>
+         {{ bill.date }} <br>
+         {{ bill.category }} <br>
+         {{ bill.posted.user }} <br>
+         {{ bill.discription }} <br>
+         <b>{{ bill.amount }}</b> <br>
+      <form action="{% url 'home:bill-delete' bill.id %}" method="post">
+         {% csrf_token %}
+         <input type="submit" value="Delete Bill" class="btn3 btn-outline-primary btn-sm">
+         <a class="" href="{% url 'home:bill-edit' bill.id %}">
+            <button type="button" class="btn3 btn-outline-primary btn-sm">Edit Bill</button>
+         </a>
+      </form>
+
+      </p>
+   </div>
+</div>
+{% endblock %}
