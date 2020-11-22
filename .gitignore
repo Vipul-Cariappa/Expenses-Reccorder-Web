@@ -132,8 +132,8 @@ dmypy.json
 *.db
 
 # Django and Project
+/static/
 */migrations/
-static/
 etc/
 
 # vscode

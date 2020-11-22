@@ -1,0 +1,89 @@
+body {
+    font-size: 1.1em;
+    text-align: justify;
+    font-family: "Fira Sans", sans-serif;
+    background: url(https://cdn.pixabay.com/photo/2015/08/07/16/07/shopping-879498_960_720.jpg) no-repeat;
+    /*background: url(https://i.pinimg.com/originals/91/77/a4/9177a413e7104ebfbdfe9ed3d904a0d3.jpg) no-repeat;
+    background: url(https://1g5v4x3z2ce62avz6wfe1y2s-wpengine.netdna-ssl.com/wp-content/uploads/2017/06/Become-an-Expert-at-Reading-Medical-Bill-728x550.jpg) no-repeat;*/
+    background-size: cover;
+}
+
+.item {
+    font-weight: 600;
+    padding: 5px 10px;
+    text-transform: uppercase;
+    transition: 0.2s;
+}
+
+.item:hover {
+    transition-delay: 500ms;
+    text-shadow: 0 0 10px cornsilk, 0 0 40px cornsilk, 0 0 80px cornsilk;
+}
+
+.heading {
+    font-family: "Oswald", sans-serif;
+    font-weight: 600;
+    font-size: 1.6em;
+}
+
+.container {
+    width: 85%;
+    margin-top: 50px;
+}
+
+.btn {
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.box {
+    backdrop-filter: blur(6px);
+    padding: 30px 30px 30px 30px;
+    align-self: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    color: black;
+    background: rgba(255, 236, 61, 0.8);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+    border: none;
+    font-size: 17px;
+    overflow: hidden;
+    -webkit-transition: 0.2s;
+    -o-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -moz-transition: 0.2s;
+}
+
+.btn:hover {
+    color: black;
+    background: rgb(255, 174, 0);
+    box-shadow: 0 0 10px rgb(255, 174, 0), 0 0 40px rgb(255, 174, 0), 0 0 80px rgb(255, 174, 0);
+    transition-delay: 100ms;
+}
+
+.sb {
+    text-decoration: none;
+    color: rgb(184, 141, 0);
+    font-weight: 550;
+    transition: ease-in-out 1s;
+    font-weight: 600;
+}
+
+.sb:hover {
+    text-decoration: none;
+    color: black;
+}
+
+#div_id_username {
+    color: whitesmoke;
+}
+
+#div_id_password {
+    color: whitesmoke;
+}

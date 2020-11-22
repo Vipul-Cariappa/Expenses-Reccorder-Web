@@ -1,0 +1,43 @@
+body {
+    font-size: 1.1em;
+    text-align: justify;
+    font-family: "Fira Sans", sans-serif;
+    background: url(https://cdn.pixabay.com/photo/2016/04/12/22/35/watercolour-1325656_960_720.jpg) no-repeat;
+    background-size: cover;
+}
+
+.para1 {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(110, 235, 240, 0.822);
+    padding: 10px 20px 5px 20px;
+    margin-top: 30px;
+}
+
+.mail {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(79, 224, 230, 0.884);
+    padding: 0px 20px 5px 20px;
+    margin-top: 30px;
+}
+
+.para2 {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(63, 191, 196, 0.884);
+    padding: 10px 20px 5px 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.contain {
+    max-width: 100%;
+}
+
+.parallax1 {
+    background: url('https://cdn.pixabay.com/photo/2019/10/11/16/48/receipts-4542292_960_720.jpg') no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 400px;
+}

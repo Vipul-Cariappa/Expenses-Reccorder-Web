@@ -57,7 +57,6 @@ def bill_list(request, group_id):
 def bill_filter(request, group_id, *arges, **kwargs):
     group = get_object_or_404(Group, pk=group_id)
     active_user = request.user
-    print(active_user)
 
     if active_user in group.users.all():
         obj = Bill.objects.filter(group=group)
@@ -143,11 +142,9 @@ def bill_update(request, bill_id):
         obj = get_object_or_404(Bill, pk=bill_id)
 
     if active_user in group.users.all() and category.group == group:
-        print("in")
         serializer = BillSerializer(data=request.data, instance=obj)
 
         if serializer.is_valid():
-            print("valid")
             serializer.save(category=category, group=group)
             return Response(serializer.data)
 
