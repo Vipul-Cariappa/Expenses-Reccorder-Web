@@ -45,7 +45,7 @@ def bill_list(request, group_id):
     active_user = request.user
 
     if active_user in group.users.all():
-        obj = Bill.objects.filter(group=group)
+        obj = Bill.objects.filter(group=group).order_by("-date")
         serializer = BillSerializer(obj, many=True)
         return Response(serializer.data)
 
@@ -59,7 +59,7 @@ def bill_filter(request, group_id, *arges, **kwargs):
     active_user = request.user
 
     if active_user in group.users.all():
-        obj = Bill.objects.filter(group=group)
+        obj = Bill.objects.filter(group=group).order_by("-date")
 
         if "year" in kwargs.keys():
             obj = obj.filter(date__year=int(kwargs["year"]))
