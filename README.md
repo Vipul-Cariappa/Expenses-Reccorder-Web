@@ -1,8 +1,6 @@
 # Expenses-Recorder-Web
 A web application to keep track of personal expenses or a groups expenses.
 
-You can access the actual site at http://15.206.155.92/ 
-This site does not have any domain associated with it.
 
 ## Contribution Information:
 Contributions are welcomed. 
