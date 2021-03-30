@@ -10,8 +10,11 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import json
 
-with open('/etc/config.json') as config_file:
+with open('meta/config.json') as config_file:
     config = json.load(config_file)
+    
+_IP_ADDR = config["IP_ADDR"]
+_PORT = config["PORT"]
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,9 +27,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config["DEBUG"]
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [_IP_ADDR,]
 
 
 # Application definition
@@ -83,12 +86,8 @@ WSGI_APPLICATION = 'My_Bills.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config["DATABASE_NAME"],
-        'USER': config["USER"],
-        'PASSWORD': config["DATABASE_PASSWORD"],
-        'HOST': "localhost",
-        'POST': "5432",
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR + '/' + 'db.sqlite3',
     }
 }
 
@@ -111,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    
+    "http://" + _IP_ADDR,
 ]
 
 # Internationalization

@@ -9,6 +9,7 @@ from .models import Bill, Category, Group
 from .function import get_groups
 from django.contrib.auth.models import User
 from datetime import date
+from My_Bills.settings import _IP_ADDR, _PORT
 
 
 # Create your views here.
@@ -157,6 +158,8 @@ def view_bill(request, group_id):
         'category': cate,
         'year': year,
         'profile_list': get_groups(active_user),
+        'IP_ADDR': _IP_ADDR,
+        'PORT': _PORT,
     }
 
     return render(request, 'record/view_bill.html', context)

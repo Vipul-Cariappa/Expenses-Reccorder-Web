@@ -78,8 +78,7 @@
 <div class="photo"></div>
 
 <script type="text/javascript">
-
-   var base_url = 'http://127.0.0.1:8000/api/bills/{{ group.id }}/'
+   var base_url = 'http://{{ IP_ADDR }}:{{ PORT }}/api/bills/{{ group.id }}/'
    var today = new Date();
    var date = today.getDate()
    var year = today.getFullYear()
