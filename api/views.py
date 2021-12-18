@@ -61,13 +61,13 @@ def bill_filter(request, group_id, *arges, **kwargs):
     if active_user in group.users.all():
         obj = Bill.objects.filter(group=group).order_by("-date")
 
-        if "year" in kwargs.keys():
+        if kwargs["year"] != None:
             obj = obj.filter(date__year=int(kwargs["year"]))
-        if "month" in kwargs.keys():
+        if kwargs["month"] != None:
             obj = obj.filter(date__month=int(kwargs["month"]))
-        if "day" in kwargs.keys():
+        if kwargs["day"] != None:
             obj = obj.filter(date__day=int(kwargs["day"]))
-        if "category" in kwargs.keys():
+        if kwargs["category"] != None:
             obj = obj.filter(category=int(kwargs["category"]))
 
         serializer = BillSerializer(obj, many=True)

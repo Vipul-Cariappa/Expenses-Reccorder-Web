@@ -9,12 +9,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import json
-
-with open('meta/config.json') as config_file:
-    config = json.load(config_file)
     
-_IP_ADDR = config["IP_ADDR"]
-_PORT = config["PORT"]
+_IP_ADDR = os.getenv("IP_ADDR")
+_PORT = os.getenv("PORT")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,12 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config['SECRET_KEY']
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config["DEBUG"]
+DEBUG = os.getenv("DEBUG")
 
-ALLOWED_HOSTS = [_IP_ADDR,]
+ALLOWED_HOSTS = [_IP_ADDR, "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -84,12 +81,25 @@ WSGI_APPLICATION = 'My_Bills.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR + '/' + 'db.sqlite3',
+if os.getenv("DATABASE") == "sqlite":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR + '/' + 'db.sqlite3',
+        }
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'railway',
+            'USER': 'root',
+            'PASSWORD': 'Abg59HTPyCPDcz8BlGa2',
+            'HOST': 'containers-us-west-25.railway.app',
+            'PORT': '7199',
+        }
+    }
 
 
 # Password validation
@@ -142,8 +152,8 @@ LOGIN_URL = 'user:login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'  # mail service smtp
-EMAIL_HOST_USER = config['EMAIL']  # email id
-EMAIL_HOST_PASSWORD = config['PASSWORD']  # password
+EMAIL_HOST_USER = os.getenv('EMAIL')  # email id
+EMAIL_HOST_PASSWORD = os.getenv('PASSWORD')  # password
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 

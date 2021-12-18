@@ -1,8 +1,0 @@
-{
-    "SECRET_KEY": "jnadsfln2314bnjlk2h314bhuj4nb51",
-    "EMAIL": "",
-    "PASSWORD": "",
-    "IP_ADDR": "192.168.0.100",
-    "PORT": "8000",
-    "DEBUG": "True"
-}
