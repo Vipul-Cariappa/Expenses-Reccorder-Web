@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG")
+DEBUG = bool(os.getenv("DEBUG"))
 
 ALLOWED_HOSTS = [_IP_ADDR, "localhost", "127.0.0.1"]
 
@@ -93,11 +93,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'railway',
-            'USER': 'root',
-            'PASSWORD': 'Abg59HTPyCPDcz8BlGa2',
-            'HOST': 'containers-us-west-25.railway.app',
-            'PORT': '7199',
+            'NAME': os.getenv("DATABASE_NAME"),
+            'USER': os.getenv("DATABASE_USER"),
+            'PASSWORD': os.getenv("DATABASE_PASSWORD"),
+            'HOST': os.getenv("DATABASE_HOST"),
+            'PORT': int(os.getenv("DATABASE_PORT")),
         }
     }
 
